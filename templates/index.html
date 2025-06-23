@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Calculator</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="calculator">
+        <h2>Smart Calculator</h2>
+        <form method="POST" action="/calculate" id="calc-form">
+            <input type="text" name="expression" id="expression" value="{{ expression or '' }}" required readonly>
+            <div class="button-grid">
+                <!-- Basic Operations -->
+                <button type="button" onclick="append('7')">7</button>
+                <button type="button" onclick="append('8')">8</button>
+                <button type="button" onclick="append('9')">9</button>
+                <button type="button" onclick="append('/')">/</button>
+                <button type="button" onclick="append('4')">4</button>
+                <button type="button" onclick="append('5')">5</button>
+                <button type="button" onclick="append('6')">6</button>
+                <button type="button" onclick="append('*')">*</button>
+                <button type="button" onclick="append('1')">1</button>
+                <button type="button" onclick="append('2')">2</button>
+                <button type="button" onclick="append('3')">3</button>
+                <button type="button" onclick="append('-')">-</button>
+                <button type="button" onclick="append('0')">0</button>
+                <button type="button" onclick="append('.')">.</button>
+                <button type="submit">=</button>
+                <button type="button" onclick="append('+')">+</button>
+                <button type="button" onclick="append('%')">%</button>
+                <button type="button" onclick="append('//')">//</button>
+                <button type="button" onclick="clearInput()">C</button>
+                <button type="button" onclick="toggleScientific()">Sci</button>
+            </div>
+            <div class="sci-grid" id="scientific-panel" style="display: none;">
+                <button type="button" onclick="append('sin(')">sin</button>
+                <button type="button" onclick="append('cos(')">cos</button>
+                <button type="button" onclick="append('tan(')">tan</button>
+                <button type="button" onclick="append('log(')">log</button>
+                <button type="button" onclick="append('sqrt(')">√</button>
+                <button type="button" onclick="append('**')">^</button>
+                <button type="button" onclick="append('pi')">π</button>
+                <button type="button" onclick="append('exp(')">exp</button>
+            </div>
+        </form>
+        {% if result is not none %}
+            <p class="result">Result: {{ result }}</p>
+        {% endif %}
+        {% if expression %}
+            <div class="history">
+                <h4>History</h4>
+                <p>{{ expression }} = {{ result }}</p>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        function append(val) {
+            document.getElementById('expression').value += val;
+        }
+        function clearInput() {
+            document.getElementById('expression').value = '';
+        }
+        function toggleScientific() {
+            const sciPanel = document.getElementById('scientific-panel');
+            sciPanel.style.display = sciPanel.style.display === 'none' ? 'grid' : 'none';
+        }
+    </script>
+</body>
+</html>
