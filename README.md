@@ -12,7 +12,7 @@ Smart Flask Calculator is a responsive and colorful 🌈 web-based calculator ap
 - 🎨 Colorful and responsive UI design
 
 **🛠️ Technology Stack:**
-- 🖥️ Frontend: HTML, CSS, JavaScript
+- 🖥️ Frontend: HTML, CSS
 - 🧪 Backend: Python, Flask
 
 **🧰 Usage:**
